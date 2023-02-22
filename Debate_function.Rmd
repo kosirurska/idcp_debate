@@ -1,0 +1,43 @@
+---
+title: "debate"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Load the libraries
+library(tidyverse)
+```
+
+
+```{r}
+name.dat <- c('Lala', 'Lolo', 'Lili')
+topic.dat <- c("MD", "GAD", "ASD")
+
+
+debate <- function(name){
+  chosen.name.1 <- sample(name.dat, 1)
+  
+  name.dat.2 <- name.dat[!name.dat %in% chosen.name.1] #remove the sampled name
+  
+  chosen.name.2 <- sample(name.dat.2,1)
+  
+  name.dat.3 <- name.dat.2[!name.dat.2 %in% chosen.name.2]
+  
+  chosen.name.3 <- name.dat.3
+  
+  position.dat <- c("categorical", "dimensional")
+  chosen.position.1 <- sample(position.dat, 1)
+  chosen.position.2 <- sample(position.dat, 1, replace = FALSE) # no clue if this works the way i want it
+  chosen.position.3 <- sample(position.dat, 1)
+  
+  for (i in topic.dat){
+    print(paste("The debate topic is:", i))
+    
+    print(paste(chosen.name.1, "will argue for", chosen.position.1, "approach"))
+    print(paste(chosen.name.2, "will argue for", chosen.position.2, "approach"))
+    print(paste(chosen.name.3, "will argue for", chosen.position.3, "approach"))
+  }
+}
+
+debate(name.dat)
+```
